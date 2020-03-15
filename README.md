@@ -71,3 +71,7 @@ programmatically retrieved, re-formatted and stored in the cache for one hour.
 
 * `npm run dev`
 * Visit your app at [http://localhost:5000](http://localhost:5000).
+
+## Deploy on ZEIT Now
+
+The easiest way to deploy your Next.js app is to use the [ZEIT Now Platform](https://zeit.co/) from the creators of Next.js.
