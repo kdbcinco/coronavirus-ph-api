@@ -76,7 +76,7 @@ programmatically retrieved, re-formatted and stored in the cache for one hour.
 
 ## Deploy on ZEIT Now
 
-The easiest way to deploy your Next.js app is to use the [ZEIT Now Platform](https://zeit.co/) from the creators of Next.js.
+The easiest way to deploy this app is to use the [ZEIT Now Platform](https://zeit.co/) from the creators of Next.js.
 
 ## Other apps
 
