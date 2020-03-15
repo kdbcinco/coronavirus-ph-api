@@ -59,7 +59,7 @@ GET /suspected-cases
 
 ## Data
 
-The data comes from the [2020 coronavirus pandemic in the Philippines page in wikipedia](https://en.wikipedia.org/wiki/2020_coronavirus_pandemic_in_the_Philippines). It is
+The data comes from the [2020 coronavirus pandemic in the Philippines page in wikipedia](https://en.wikipedia.org/wiki/2020_coronavirus_pandemic_in_the_Philippines) which also gets mostly of their data from the [DOH COVID-19](https://www.doh.gov.ph/2019-nCoV) page. It is
 programmatically retrieved, re-formatted and stored in the cache for one hour.
 
 ## Installation
