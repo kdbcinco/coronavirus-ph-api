@@ -22,7 +22,8 @@ GET /cases
     "Had Recent Travel History Abroad": "Yes",
     "Status": "Recovered",
     "Notes": "Traveled from Wuhan, China and Hong Kong. Wife of Case No. 2; discharged on February 10."
-  }
+  },
+  {...}
 ]
 
 ```
@@ -39,7 +40,8 @@ GET /cases-outside-ph
     "Confirmed": "80",
     "Recovered": "70",
     "Died": "0"
-  }
+  },
+  {...}
 ]
 ```
 
