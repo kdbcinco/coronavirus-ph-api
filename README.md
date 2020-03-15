@@ -72,7 +72,7 @@ programmatically retrieved, re-formatted and stored in the cache for one hour.
 ## Running / Development
 
 * `npm run dev`
-* Visit your app at [http://localhost:5000](http://localhost:3030).
+* Visit your app at [http://localhost:3030](http://localhost:3030).
 
 ## Deploy on ZEIT Now
 
