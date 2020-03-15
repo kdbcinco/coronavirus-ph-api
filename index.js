@@ -15,12 +15,6 @@ app.use(morgan('dev'));
 app.use(cors());
 app.use(cache('1 hour'));
 
-// app.get('/', (_, res) => res.redirect('https://github.com/sorxrob/coronavirus-ph-api'));
-
-app.get('/', (_, res) => {
-    res.sendFile(path.join(__dirname + '/index.html'));
-})
-
 app.get('/cases', async (_, res) => {
     const data = await scrape.getCases();
     return res.json(data);
