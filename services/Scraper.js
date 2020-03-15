@@ -21,9 +21,9 @@ class Scraper {
             if (idx === 0) return;
             
             const obj = {
-                "Case No": item,
+                "Case No": +item,
                 "Date": rawData[1][idx],
-                "Age": rawData[2][idx],
+                "Age": +rawData[2][idx],
                 "Gender": rawData[3][idx],
                 "Nationality": rawData[4][idx],
                 "Hospital Admitted To": rawData[5][idx],
@@ -50,9 +50,9 @@ class Scraper {
             
             const obj = {
                 "Country/Territory/Place": item,
-                "Confirmed": rawData[1][idx],
-                "Recovered": rawData[2][idx],
-                "Died": rawData[3][idx]
+                "Confirmed": +rawData[1][idx],
+                "Recovered": +rawData[2][idx],
+                "Died": +rawData[3][idx]
             };
             
             formattedData.push(obj);
@@ -67,9 +67,9 @@ class Scraper {
         const rawData = $('.wikitable').eq(3).parsetable(true, true, true);
 
         return {
-            "Confirmed cases": rawData[1][0],
-            "Cases tested negative": rawData[1][1],
-            "Cases pending test results": rawData[1][2]
+            "Confirmed cases": +rawData[1][0],
+            "Cases tested negative": +rawData[1][1],
+            "Cases pending test results": +rawData[1][2]
         }
     }
 }
