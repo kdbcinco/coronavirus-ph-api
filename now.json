@@ -1,0 +1,21 @@
+{
+  "version": 2,
+  "builds": [{ "src": "index.js", "use": "@now/node-server" }],
+  "routes": [
+    {
+      "src": "/cases",
+      "dest": "/index.js",
+      "methods": ["GET"]
+    },
+    {
+      "src": "/cases-outside-ph",
+      "dest": "/index.js",
+      "methods": ["GET"]
+    },
+    {
+      "src": "/suspected-cases",
+      "dest": "/index.js",
+      "methods": ["GET"]
+    }
+  ]
+}
