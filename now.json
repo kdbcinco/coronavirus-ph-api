@@ -1,12 +1,10 @@
 {
   "version": 2,
-  "builds": [{ "src": "index.js", "use": "@now/node-server" }],
+  "builds": [{
+    "src": "index.html",
+    "use": "@now/static"
+  }, { "src": "index.js", "use": "@now/node-server" }],
   "routes": [
-    {
-      "src": "/",
-      "dest": "/index.js",
-      "methods": ["GET"]
-    },
     {
       "src": "/cases",
       "dest": "/index.js",
