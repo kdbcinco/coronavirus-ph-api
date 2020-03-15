@@ -9,6 +9,8 @@ const app = express();
 const PORT = 3030;
 const cache = apicache.middleware;
 
+const scrape = new Scraper();
+
 app.use(morgan('dev'));
 app.use(cors());
 app.use(cache('1 hour'));
@@ -16,20 +18,17 @@ app.use(cache('1 hour'));
 app.get('/', (_, res) => res.redirect('https://github.com/sorxrob/coronavirus-ph-api'));
 
 app.get('/cases', async (_, res) => {
-    const scraper = new Scraper();
-    const data = await scraper.getCases();
+    const data = await scrape.getCases();
     return res.json(data);
 });
 
 app.get('/cases-outside-ph', async (_, res) => {
-    const scraper = new Scraper();
-    const data = await scraper.getCasesOutsidePh();
+    const data = await scrape.getCasesOutsidePh();
     return res.json(data);
 });
 
 app.get('/suspected-cases', async (_, res) => {
-    const scraper = new Scraper();
-    const data = await scraper.getSuspectedCases();
+    const data = await scrape.getSuspectedCases();
     return res.json(data);
 });
 
