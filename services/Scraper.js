@@ -72,6 +72,36 @@ class Scraper {
             "cases_pending_test_results": +rawData[1][2]
         }
     }
+
+    async getPatientsUnderInvestigation() {
+        const $ = await this.getHTML();
+        cheerioTableparser($);
+        const rawData = $('.wikitable').eq(4).parsetable(true, true, true);
+
+        const formattedData = [];
+        
+        rawData[0].forEach((item, idx) => {
+            const skip = [0, 1, 2, rawData[0].length - 1];
+            if (skip.includes(idx)) return;
+            
+            const obj = {
+                "region": item,
+                "suspected_cases": {
+                    "admitted": rawData[1][idx],
+                    "deaths": rawData[2][idx]
+                },
+                "confirmed_cases": {
+                    "admitted": rawData[3][idx],
+                    "recoveries": rawData[4][idx],
+                    "deaths": rawData[5][idx],
+                }
+            };
+            
+            formattedData.push(obj);
+        });
+        
+        return formattedData;
+    }
 }
 
 module.exports = Scraper;

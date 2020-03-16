@@ -34,6 +34,11 @@ app.get('/suspected-cases', async (_, res) => {
     return res.json(data);
 });
 
+app.get('/patients-under-investigation', async (_, res) => {
+    const data = await scrape.getPatientsUnderInvestigation();
+    return res.json(data);
+});
+
 app.listen(PORT, () => {
     console.log(`Server started on port ${PORT}...`);
 });
