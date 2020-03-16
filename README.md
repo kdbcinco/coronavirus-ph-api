@@ -19,7 +19,7 @@ GET /cases
     "gender": "Female",
     "nationality": "Chinese",
     "hospital_admitted_to": "San Lazaro Hospital, Manila",
-    "had_recent_travel_hitory_abroad": "Yes",
+    "had_recent_travel_history_abroad": "Yes",
     "status": "Recovered",
     "notes": "Traveled from Wuhan, China and Hong Kong. Wife of Case No. 2; discharged on February 10."
   },

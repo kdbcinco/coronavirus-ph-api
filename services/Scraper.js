@@ -27,7 +27,7 @@ class Scraper {
                 "gender": rawData[3][idx],
                 "nationality": rawData[4][idx],
                 "hospital_admitted_to": rawData[5][idx],
-                "had_recent_travel_hitory_abroad": rawData[6][idx],
+                "had_recent_travel_history_abroad": rawData[6][idx],
                 "status": rawData[7][idx],
                 "notes": rawData[8][idx]
             };
