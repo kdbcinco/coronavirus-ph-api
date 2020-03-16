@@ -13,9 +13,9 @@ GET /cases
 ```json
 [
   {
-    "Case No": "1",
+    "Case No": 1,
     "Date": "January 30",
-    "Age": "38",
+    "Age": 38,
     "Gender": "Female",
     "Nationality": "Chinese",
     "Hospital Admitted To": "San Lazaro Hospital, Manila",
@@ -37,9 +37,9 @@ GET /cases-outside-ph
 [
   {
     "Country/Territory/Place": "Diamond Princess",
-    "Confirmed": "80",
-    "Recovered": "70",
-    "Died": "0"
+    "Confirmed": 80,
+    "Recovered": 70,
+    "Died": 0
   },
   {...}
 ]
@@ -51,9 +51,9 @@ GET /suspected-cases
 ```
 ```json
 {
-  "Confirmed cases": "140",
-  "Cases tested negative": "638",
-  "Cases pending test results": "72"
+  "Confirmed cases": 140,
+  "Cases tested negative": 638,
+  "Cases pending test results": 72
 }
 ```
 
