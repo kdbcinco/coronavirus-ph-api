@@ -39,7 +39,6 @@ class Scraper {
     // it being added to the confirmed cases table, so we add TBA values
     const confirmedCases = $('.infobox tbody tr th:contains("Confirmed cases")').next().text();
     if (+confirmedCases > formattedData.length) {
-      console.log('yes')
       const diff = +confirmedCases - formattedData.length;
       for (let x = 0; x < diff; x++) {
         formattedData.push({
