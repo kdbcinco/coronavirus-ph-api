@@ -1,9 +1,6 @@
 {
   "version": 2,
   "builds": [{
-    "src": "index.html",
-    "use": "@now/static"
-  }, {
     "src": "README.md",
     "use": "@now/static"
   }, { "src": "index.js", "use": "@now/node-server" }],
