@@ -80,4 +80,14 @@ The easiest way to deploy this app is to use the [ZEIT Now Platform](https://zei
 
 ## Other apps
 
-I also made a [coronavirus tracking website](https://the2019ncov.com) and open-sourced it!
+I also launched a [coronavirus tracking website](https://the2019ncov.com) and open-sourced it!
+
+## License & copyright
+
+© Robert C Soriano
+
+Licensed under the [MIT License](LICENSE).
+
+## Acknowledgments
+
+- Hat tip to anyone whos module was used
