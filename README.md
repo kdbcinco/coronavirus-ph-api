@@ -84,6 +84,10 @@ programmatically retrieved, re-formatted and stored in the cache for one hour.
 
 The easiest way to deploy this app is to use the [ZEIT Now Platform](https://zeit.co/) from the creators of Next.js.
 
+## In the Wild
+A list of public websites that are using this API
+* https://zntp.github.io/covidcase
+
 ## Other apps
 
 I also launched a [coronavirus tracking website](https://the2019ncov.com) and open-sourced it!
@@ -93,7 +97,3 @@ I also launched a [coronavirus tracking website](https://the2019ncov.com) and op
 © Robert C Soriano
 
 Licensed under the [MIT License](LICENSE).
-
-## Acknowledgments
-
-- Hat tip to anyone whos module was used
