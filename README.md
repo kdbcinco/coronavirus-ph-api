@@ -2,6 +2,12 @@
 
 > 🦠A simple api for tracking the coronavirus (COVID-19, SARS-CoV-2) outbreak in the Philippines.
 
+![GitHub](https://img.shields.io/github/license/sorxrob/coronavirus-ph-api)
+![GitHub repo size](https://img.shields.io/github/repo-size/sorxrob/coronavirus-ph-api?label=size)
+![GitHub stars](https://img.shields.io/github/stars/sorxrob/coronavirus-ph-api)
+![GitHub forks](https://img.shields.io/github/forks/sorxrob/coronavirus-ph-api)
+![GitHub last commit](https://img.shields.io/github/last-commit/sorxrob/coronavirus-ph-api)
+
 ## Endpoints
 
 All requests must be made to the base url: ``https://coronavirus-ph-api.now.sh`` (e.g: https://coronavirus-ph-api.now.sh/cases). You can try them out in your browser to further inspect responses.
