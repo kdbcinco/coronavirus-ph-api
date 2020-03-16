@@ -19,6 +19,11 @@
       "src": "/suspected-cases",
       "dest": "/index.js",
       "methods": ["GET"]
+    },
+    {
+      "src": "/patients-under-investigation",
+      "dest": "/index.js",
+      "methods": ["GET"]
     }
   ]
 }

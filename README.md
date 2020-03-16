@@ -63,6 +63,31 @@ GET /suspected-cases
 }
 ```
 
+Getting patients under investigation:
+```http
+GET /patients-under-investigation
+```
+```json
+[
+  {
+    "region": "Metro Manila (NCR)",
+    "current_pui_status": {
+       "suspected_cases": {
+         "admitted": 80,
+         "deaths": 1
+       },
+       "confirmed_cases": {
+         "admitted": 117,
+         "recoveries": 1,
+         "deaths": 9
+       }
+    },
+    "total": 208
+  },
+  {...}
+]
+```
+
 ## Data
 
 The data comes from the [2020 coronavirus pandemic in the Philippines page in wikipedia](https://en.wikipedia.org/wiki/2020_coronavirus_pandemic_in_the_Philippines) which also gets mostly of their data from the [DOH COVID-19](https://www.doh.gov.ph/2019-nCoV) page. It is

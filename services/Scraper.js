@@ -86,16 +86,23 @@ class Scraper {
             
             const obj = {
                 "region": item,
-                "suspected_cases": {
-                    "admitted": rawData[1][idx],
-                    "deaths": rawData[2][idx]
+                "current_pui_status": {
+                    "suspected_cases": {
+                        "admitted": +rawData[1][idx],
+                        "deaths": +rawData[2][idx]
+                    },
+                    "confirmed_cases": {
+                        "admitted": +rawData[3][idx],
+                        "recoveries": +rawData[4][idx],
+                        "deaths": +rawData[5][idx],
+                    }
                 },
-                "confirmed_cases": {
-                    "admitted": rawData[3][idx],
-                    "recoveries": rawData[4][idx],
-                    "deaths": rawData[5][idx],
-                }
+                "total": 0
             };
+
+            for (let x = 1; x <= 5; x++) {
+                obj.total += +rawData[x][idx];
+            }
             
             formattedData.push(obj);
         });
