@@ -13,15 +13,15 @@ GET /cases
 ```json
 [
   {
-    "Case No": 1,
-    "Date": "January 30",
-    "Age": 38,
-    "Gender": "Female",
-    "Nationality": "Chinese",
-    "Hospital Admitted To": "San Lazaro Hospital, Manila",
-    "Had Recent Travel History Abroad": "Yes",
-    "Status": "Recovered",
-    "Notes": "Traveled from Wuhan, China and Hong Kong. Wife of Case No. 2; discharged on February 10."
+    "case_no": 1,
+    "date": "January 30",
+    "age": 38,
+    "gender": "Female",
+    "nationality": "Chinese",
+    "hospital_admitted_to": "San Lazaro Hospital, Manila",
+    "had_recent_travel_hitory_abroad": "Yes",
+    "status": "Recovered",
+    "notes": "Traveled from Wuhan, China and Hong Kong. Wife of Case No. 2; discharged on February 10."
   },
   {...}
 ]
@@ -36,10 +36,10 @@ GET /cases-outside-ph
 ```json
 [
   {
-    "Country/Territory/Place": "Diamond Princess",
-    "Confirmed": 80,
-    "Recovered": 70,
-    "Died": 0
+    "country_territory_place": "Diamond Princess",
+    "confirmed": 80,
+    "recovered": 70,
+    "died": 0
   },
   {...}
 ]
@@ -51,9 +51,9 @@ GET /suspected-cases
 ```
 ```json
 {
-  "Confirmed cases": 140,
-  "Cases tested negative": 638,
-  "Cases pending test results": 72
+  "confirmed_cases": 140,
+  "cases_tested_negative": 638,
+  "cases_pending_test_results": 72
 }
 ```
 

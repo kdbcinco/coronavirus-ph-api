@@ -21,15 +21,15 @@ class Scraper {
             if (idx === 0) return;
             
             const obj = {
-                "Case No": +item,
-                "Date": rawData[1][idx],
-                "Age": +rawData[2][idx],
-                "Gender": rawData[3][idx],
-                "Nationality": rawData[4][idx],
-                "Hospital Admitted To": rawData[5][idx],
-                "Had Recent Travel History Abroad": rawData[6][idx],
-                "Status": rawData[7][idx],
-                "Notes": rawData[8][idx]
+                "case_no": +item,
+                "date": rawData[1][idx],
+                "age": +rawData[2][idx],
+                "gender": rawData[3][idx],
+                "nationality": rawData[4][idx],
+                "hospital_admitted_to": rawData[5][idx],
+                "had_recent_travel_hitory_abroad": rawData[6][idx],
+                "status": rawData[7][idx],
+                "notes": rawData[8][idx]
             };
             
             formattedData.push(obj);
@@ -49,10 +49,10 @@ class Scraper {
             if (idx === 0 || idx === rawData[0].length - 1 || idx === rawData[0].length - 2) return;
             
             const obj = {
-                "Country/Territory/Place": item,
-                "Confirmed": +rawData[1][idx],
-                "Recovered": +rawData[2][idx],
-                "Died": +rawData[3][idx]
+                "country_territory_place": item,
+                "confirmed": +rawData[1][idx],
+                "recovered": +rawData[2][idx],
+                "died": +rawData[3][idx]
             };
             
             formattedData.push(obj);
@@ -67,9 +67,9 @@ class Scraper {
         const rawData = $('.wikitable').eq(3).parsetable(true, true, true);
 
         return {
-            "Confirmed cases": +rawData[1][0],
-            "Cases tested negative": +rawData[1][1],
-            "Cases pending test results": +rawData[1][2]
+            "confirmed_cases": +rawData[1][0],
+            "cases_tested_negative": +rawData[1][1],
+            "cases_pending_test_results": +rawData[1][2]
         }
     }
 }
