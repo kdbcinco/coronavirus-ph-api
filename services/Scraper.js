@@ -46,7 +46,8 @@ class Scraper {
         const formattedData = [];
         
         rawData[0].forEach((item, idx) => {
-            if (idx === 0 || idx === rawData[0].length - 1 || idx === rawData[0].length - 2) return;
+            const skip = [0, rawData[0].length - 1, rawData[0].length - 2]
+            if (skip.includes(idx)) return;
             
             const obj = {
                 "country_territory_place": item,
