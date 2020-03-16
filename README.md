@@ -112,6 +112,7 @@ The easiest way to deploy this app is to use the [ZEIT Now Platform](https://zei
 ## In the Wild
 A list of public websites that are using this API
 * https://zntp.github.io/covidcase
+* https://covid19ph-update.netlify.com
 
 ## Other apps
 
