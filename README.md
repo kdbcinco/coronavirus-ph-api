@@ -20,7 +20,7 @@ GET /cases
 [
   {
     "case_no": 1,
-    "date": "January 30",
+    "date": "2020-01-30",
     "age": 38,
     "gender": "Female",
     "nationality": "Chinese",
@@ -104,6 +104,10 @@ programmatically retrieved, re-formatted and stored in the cache for one hour.
 
 * `npm run dev`
 * Visit your app at [http://localhost:3030](http://localhost:3030).
+
+## Testing
+
+* `npm test`
 
 ## Deploy on ZEIT Now
 

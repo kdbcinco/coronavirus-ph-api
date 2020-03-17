@@ -7,8 +7,12 @@ const URL = 'https://en.wikipedia.org/wiki/2020_coronavirus_pandemic_in_the_Phil
 
 class Scraper {
   async getHTML() {
-    const res = await axios(URL);
-    return cheerio.load(res.data);
+    try {
+      const res = await axios(URL);
+      return cheerio.load(res.data);
+    } catch (e) {
+      throw new Error("Can't fetch url.");
+    }
   }
   
   async getCases() {
