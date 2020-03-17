@@ -79,3 +79,43 @@ describe('GET /suspected-cases', () => {
   });
   
 });
+
+describe('GET /mm-checkpoints', () => {
+  
+  it('response with json containing a list of Metro Manila Community Quarantine Checkpoints', async (done) => {
+    const response = await request.get('/mm-checkpoints');
+    expect(response.status).toBe(200);
+    expect(JSON.stringify(response.body)).toMatch(JSON.stringify({
+      id: 13,
+      district: "NORTHERN POLICE DISTRICT",
+      city: "VALENZUELA CITY",
+      location: "NLEX (ENTRANCE)",
+      type: "EntryExit",
+      lat: 14.768614,
+      lng: 120.967557,
+      description: "Not verified"
+    }))
+    done();
+  });
+  
+});
+
+describe('GET /mm-checkpoints/:id', () => {
+  
+  it('response with json containing a single Metro Manila Community Quarantine Checkpoint', async (done) => {
+    const response = await request.get('/mm-checkpoints/13');
+    expect(response.status).toBe(200);
+    expect(JSON.stringify(response.body)).toMatch(JSON.stringify({
+      id: 13,
+      district: "NORTHERN POLICE DISTRICT",
+      city: "VALENZUELA CITY",
+      location: "NLEX (ENTRANCE)",
+      type: "EntryExit",
+      lat: 14.768614,
+      lng: 120.967557,
+      description: "Not verified"
+    }))
+    done();
+  });
+  
+});
