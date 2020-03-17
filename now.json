@@ -1,9 +1,12 @@
 {
   "version": 2,
-  "builds": [{
-    "src": "README.md",
-    "use": "@now/static"
-  }, { "src": "index.js", "use": "@now/node-server" }],
+  "builds": [
+    {
+      "src": "README.md",
+      "use": "@now/static"
+    },
+    { "src": "index.js", "use": "@now/node-server" }
+  ],
   "routes": [
     {
       "src": "/cases",
@@ -22,6 +25,11 @@
     },
     {
       "src": "/patients-under-investigation",
+      "dest": "/index.js",
+      "methods": ["GET"]
+    },
+    {
+      "src": "/mm-checkpoints",
       "dest": "/index.js",
       "methods": ["GET"]
     }
