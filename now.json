@@ -32,6 +32,11 @@
       "src": "/mm-checkpoints",
       "dest": "/index.js",
       "methods": ["GET"]
+    },
+    {
+      "src": "/mm-checkpoints/(?<id>[^/]*)",
+      "dest": "/index.js",
+      "methods": ["GET"]
     }
   ]
 }
