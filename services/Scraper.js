@@ -1,6 +1,7 @@
 const cheerio = require('cheerio');
 const cheerioTableparser = require('cheerio-tableparser');
 const axios = require('axios');
+const { toIS08601 } = require('../utils');
 
 const URL = 'https://en.wikipedia.org/wiki/2020_coronavirus_pandemic_in_the_Philippines';
 
@@ -22,7 +23,7 @@ class Scraper {
       
       const obj = {
         "case_no": +item,
-        "date": rawData[1][idx],
+        "date": toIS08601(`${rawData[1][idx]}, 2020`),
         "age": +rawData[2][idx],
         "gender": rawData[3][idx],
         "nationality": rawData[4][idx],
