@@ -88,9 +88,46 @@ GET /patients-under-investigation
 ]
 ```
 
+Getting Metro Manila Community Quarantine Checkpoints:
+```http
+GET /mm-checkpoints
+```
+```json
+[
+  {
+    "id": 13,
+    "district": "NORTHERN POLICE DISTRICT",
+    "city": "VALENZUELA CITY",
+    "location": "NLEX (ENTRANCE)",
+    "type": "EntryExit",
+    "lat": 14.768614,
+    "lng": 120.967557,
+    "description": "Not verified"
+  },
+  {...}
+]
+```
+
+Getting a single Metro Manila Community Quarantine Checkpoint:
+```http
+GET /mm-checkpoints/:id
+```
+```json
+{
+  "id": 13,
+  "district": "NORTHERN POLICE DISTRICT",
+  "city": "VALENZUELA CITY",
+  "location": "NLEX (ENTRANCE)",
+  "type": "EntryExit",
+  "lat": 14.768614,
+  "lng": 120.967557,
+  "description": "Not verified"
+}
+```
+
 ## Data
 
-The data comes from the [2020 coronavirus pandemic in the Philippines page in wikipedia](https://en.wikipedia.org/wiki/2020_coronavirus_pandemic_in_the_Philippines) which also gets mostly of their data from the [DOH COVID-19](https://www.doh.gov.ph/2019-nCoV) page. It is
+The cases data comes from the [2020 coronavirus pandemic in the Philippines page in wikipedia](https://en.wikipedia.org/wiki/2020_coronavirus_pandemic_in_the_Philippines) which also gets mostly of their data from the [DOH COVID-19](https://www.doh.gov.ph/2019-nCoV) page while the checkpoints data comes from [safetravel.ph](https://safetravel.ph/). It is
 programmatically retrieved, re-formatted and stored in the cache for one hour.
 
 ## Installation
