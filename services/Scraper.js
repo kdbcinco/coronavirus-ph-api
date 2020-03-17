@@ -24,6 +24,29 @@ class Scraper {
     
     rawData[0].forEach((item, idx) => {
       if (idx === 0) return;
+
+      // Check if last row has hyphen meaning it's TBA
+      if (item.includes('–')) {
+        const confirmedCases = $('.infobox tbody tr th:contains("Confirmed cases")').next().text();
+        if (+confirmedCases > formattedData.length) {
+          const diff = +confirmedCases - formattedData.length;
+          for (let x = 0; x < diff; x++) {
+            formattedData.push({
+              "case_no": formattedData.length + 1,
+              "date": "TBA",
+              "age": "TBA",
+              "gender": "TBA",
+              "nationality": "TBA",
+              "hospital_admitted_to": "TBA",
+              "had_recent_travel_history_abroad": "TBA",
+              "status": "TBA",
+              "notes": "TBA"
+            });
+          }
+        }
+
+        return;
+      }
       
       const obj = {
         "case_no": +item,
@@ -39,26 +62,6 @@ class Scraper {
       
       formattedData.push(obj);
     });
-    
-    // Infobox data can be updated, but it needs the complete data before
-    // it being added to the confirmed cases table, so we add TBA values
-    const confirmedCases = $('.infobox tbody tr th:contains("Confirmed cases")').next().text();
-    if (+confirmedCases > formattedData.length) {
-      const diff = +confirmedCases - formattedData.length;
-      for (let x = 0; x < diff; x++) {
-        formattedData.push({
-          "case_no": formattedData.length + 1,
-          "date": "TBA",
-          "age": "TBA",
-          "gender": "TBA",
-          "nationality": "TBA",
-          "hospital_admitted_to": "TBA",
-          "had_recent_travel_history_abroad": "TBA",
-          "status": "TBA",
-          "notes": "TBA"
-        });
-      }
-    }
     
     return formattedData;
   }
