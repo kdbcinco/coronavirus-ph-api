@@ -40,22 +40,6 @@ describe('GET /cases-outside-ph', () => {
   
 });
 
-describe('GET /cases-outside-ph', () => {
-  
-  it('response with json containing a list of all cases outside ph', async (done) => {
-    const response = await request.get('/cases-outside-ph');
-    expect(response.status).toBe(200);
-    expect(JSON.stringify(response.body)).toMatch(JSON.stringify({
-      country_territory_place: "Diamond Princess",
-      confirmed: 80,
-      recovered: 76,
-      died: 0
-    }))
-    done();
-  });
-  
-});
-
 describe('GET /patients-under-investigation', () => {
   
   it('response with json containing a list of all patients under investigation', async (done) => {
