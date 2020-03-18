@@ -2,6 +2,7 @@ const cheerio = require('cheerio');
 const cheerioTableparser = require('cheerio-tableparser');
 const axios = require('axios');
 const { GoogleSpreadsheet } = require('google-spreadsheet');
+const { toIS08601 } = require('../utils');
 require('dotenv').config();
 
 const URL = 'https://en.wikipedia.org/wiki/2020_coronavirus_pandemic_in_the_Philippines';
@@ -40,7 +41,7 @@ class Scraper {
     rows.forEach((row) => {
       formattedData.push({
         "case_no": +row['Case #'],
-        "date": row['Tested Positive'],
+        "date": row['Tested Positive'] === 'For Validation' ? 'For Validation' : toIS08601(`${row['Tested Positive']}, 2020`),
         "age": +row.Age,
         "gender": addTBA(row['Sex']),
         "nationality": addTBA(row['Nationality']),
