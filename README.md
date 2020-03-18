@@ -10,12 +10,14 @@
 
 ## Endpoints
 
-All requests must be made to the base url: ``https://coronavirus-ph-api.now.sh`` (e.g: https://coronavirus-ph-api.now.sh/cases). You can try them out in your browser to further inspect responses.
+All requests must be made to the base url: `https://coronavirus-ph-api.now.sh` (e.g: https://coronavirus-ph-api.now.sh/cases). You can try them out in your browser to further inspect responses.
 
 Getting summary of COVID-19 cases in the Philippines:
+
 ```http
 GET /cases
 ```
+
 ```json
 [
   {
@@ -36,9 +38,11 @@ GET /cases
 
 Getting confirmed cases of Filipino
 nationals outside the Philippines:
+
 ```http
 GET /cases-outside-ph
 ```
+
 ```json
 [
   {
@@ -52,9 +56,11 @@ GET /cases-outside-ph
 ```
 
 Getting suspected cases:
+
 ```http
 GET /suspected-cases
 ```
+
 ```json
 {
   "confirmed_cases": 140,
@@ -64,9 +70,11 @@ GET /suspected-cases
 ```
 
 Getting patients under investigation:
+
 ```http
 GET /patients-under-investigation
 ```
+
 ```json
 [
   {
@@ -89,9 +97,11 @@ GET /patients-under-investigation
 ```
 
 Getting Metro Manila Community Quarantine Checkpoints:
+
 ```http
 GET /mm-checkpoints
 ```
+
 ```json
 [
   {
@@ -109,9 +119,11 @@ GET /mm-checkpoints
 ```
 
 Getting a single Metro Manila Community Quarantine Checkpoint:
+
 ```http
 GET /mm-checkpoints/:id
 ```
+
 ```json
 {
   "id": 13,
@@ -132,28 +144,31 @@ programmatically retrieved, re-formatted and stored in the cache for one hour.
 
 ## Installation
 
-* `git clone https://github.com/sorxrob/coronavirus-ph-api.git`
-* `cd coronavirus-ph-api`
-* `npm install`
-* `npm start`
+- `git clone https://github.com/sorxrob/coronavirus-ph-api.git`
+- `cd coronavirus-ph-api`
+- `npm install`
+- `npm start`
 
 ## Running / Development
 
-* `npm run dev`
-* Visit your app at [http://localhost:3030](http://localhost:3030).
+- `npm run dev`
+- Visit your app at [http://localhost:3030](http://localhost:3030).
 
 ## Testing
 
-* `npm test`
+- `npm test`
 
 ## Deploy on ZEIT Now
 
 The easiest way to deploy this app is to use the [ZEIT Now Platform](https://zeit.co/) from the creators of Next.js.
 
 ## In the Wild
+
 A list of public websites that are using this API
-* https://zntp.github.io/covidcase
-* https://covid19ph-update.netlify.com
+
+- https://zntp.github.io/covidcase
+- https://covid19ph-update.netlify.com
+- https://covid19.nextvation.com
 
 ## Other apps
 
