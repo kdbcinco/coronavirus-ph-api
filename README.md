@@ -150,6 +150,7 @@ All data are programmatically retrieved, re-formatted and stored in the cache fo
 
 - `git clone https://github.com/sorxrob/coronavirus-ph-api.git`
 - `cd coronavirus-ph-api`
+- `cp .env.example .env`
 - `npm install`
 - `npm start`
 
