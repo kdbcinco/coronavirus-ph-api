@@ -23,15 +23,14 @@ class Scraper {
     }
   }
   
-  async getCases(limit) {
+  async getCases() {
     await doc.loadInfo();
     
     // Main database from reddit
     const firstSheet = doc.sheetsByIndex[0];
     
     const rows = await firstSheet.getRows({
-      offset: 1,
-      limit
+      offset: 1
     });
     
     const formattedData = [];
@@ -56,27 +55,25 @@ class Scraper {
     
     // Check if current total is equal to data from reddit.
     // If not equal, add placeholders (TBA)
-    if (!limit) {
-      const $ = await this.getHTML();
-      cheerioTableparser($);
-      const confirmedCases = $('.infobox tbody tr th:contains("Confirmed cases")').next().text(); 
-      if (+confirmedCases > formattedData.length) {
-        const diff = +confirmedCases - formattedData.length;
-        for (let x = 0; x < diff; x++) {
-          formattedData.push({
-            "case_no": formattedData.length + 1,
-            "date": "TBA",
-            "age": "TBA",
-            "gender": "TBA",
-            "nationality": "TBA",
-            "hospital_admitted_to": "TBA",
-            "had_recent_travel_history_abroad": "TBA",
-            "resident_of": "TBA",
-            "status": "TBA",
-            "other_information": "TBA",
-            "source": "TBA"
-          });
-        }
+    const $ = await this.getHTML();
+    cheerioTableparser($);
+    const confirmedCases = $('.infobox tbody tr th:contains("Confirmed cases")').next().text(); 
+    if (+confirmedCases > formattedData.length) {
+      const diff = +confirmedCases - formattedData.length;
+      for (let x = 0; x < diff; x++) {
+        formattedData.push({
+          "case_no": formattedData.length + 1,
+          "date": "TBA",
+          "age": "TBA",
+          "gender": "TBA",
+          "nationality": "TBA",
+          "hospital_admitted_to": "TBA",
+          "had_recent_travel_history_abroad": "TBA",
+          "resident_of": "TBA",
+          "status": "TBA",
+          "other_information": "TBA",
+          "source": "TBA"
+        });
       }
     }
     

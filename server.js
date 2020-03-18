@@ -21,7 +21,7 @@ app.get('/', (_, res) => {
 });
 
 app.get('/cases', async (req, res) => {
-  const data = await scrape.getCases(+req.query.limit);
+  const data = await scrape.getCases();
   return res.json(data);
 });
 
