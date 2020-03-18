@@ -15,7 +15,7 @@ All requests must be made to the base url: `https://coronavirus-ph-api.now.sh` (
 Getting summary of COVID-19 cases in the Philippines:
 
 ```http
-GET /cases
+GET /cases?limit=10
 ```
 
 ```json

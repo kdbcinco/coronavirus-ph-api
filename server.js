@@ -20,8 +20,8 @@ app.get('/', (_, res) => {
   res.sendFile(path.join(__dirname + '/index.html'));
 });
 
-app.get('/cases', async (_, res) => {
-  const data = await scrape.getCases();
+app.get('/cases', async (req, res) => {
+  const data = await scrape.getCases(+req.query.limit);
   return res.json(data);
 });
 
