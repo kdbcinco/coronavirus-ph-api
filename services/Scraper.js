@@ -45,14 +45,14 @@ class Scraper {
     // If this element is missing, it means the table is missing in wiki
     const casesCaption = $('span.nowrap:contains("Summary of COVID-19 cases in the Philippines")');
 
-    // Infobox confirmed cases
-    const confirmedCases = $('.infobox tbody tr th:contains("Confirmed cases")').next().text(); 
-
     // Backup source when wiki is down
     if (!casesCaption.text()) {
       const redditData = await this.getRedditCases();
       return redditData;
     }
+
+    // Infobox confirmed cases
+    const confirmedCases = $('.infobox tbody tr th:contains("Confirmed cases")').next().text(); 
 
     rawData[0].forEach((item, idx) => {
       if (idx === 0) return;
