@@ -1,5 +1,8 @@
 {
   "version": 2,
+  "env": {
+    "DOC_API_KEY": "@doc-api-key"
+  },
   "builds": [
     {
       "src": "README.md",

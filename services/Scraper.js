@@ -1,9 +1,14 @@
 const cheerio = require('cheerio');
 const cheerioTableparser = require('cheerio-tableparser');
 const axios = require('axios');
-const { toIS08601 } = require('../utils');
+const { GoogleSpreadsheet } = require('google-spreadsheet');
 
 const URL = 'https://en.wikipedia.org/wiki/2020_coronavirus_pandemic_in_the_Philippines';
+
+const sheetId = '1wdxIwD0b58znX4UrH6JJh_0IhnZP0YWn23Uqs7lHB6Q';
+const doc = new GoogleSpreadsheet(sheetId);
+
+doc.useApiKey(process.env.DOC_API_KEY);
 
 class Scraper {
   async getHTML() {
@@ -16,65 +21,35 @@ class Scraper {
   }
   
   async getCases() {
-    const $ = await this.getHTML();
-    cheerioTableparser($);
-    const rawData = $('.wikitable').first().parsetable(true, true, true);
-
-    const model = (caseNo) => ({
-      "case_no": caseNo,
-      "date": "TBA",
-      "age": "TBA",
-      "gender": "TBA",
-      "nationality": "TBA",
-      "hospital_admitted_to": "TBA",
-      "had_recent_travel_history_abroad": "TBA",
-      "status": "TBA",
-      "notes": "TBA"
-    })
+    await doc.loadInfo();
     
-    const formattedData = [];
-
-    // Infobox confirmed cases
-    const confirmedCases = $('.infobox tbody tr th:contains("Confirmed cases")').next().text(); 
+    // Main database from reddit
+    const firstSheet = doc.sheetsByIndex[0];
+    await firstSheet.loadHeaderRow();
     
-    rawData[0].forEach((item, idx) => {
-      if (idx === 0) return;
-
-      // Check if last row has hyphen meaning it's TBA
-      if (item.includes('–')) {
-        if (+confirmedCases > formattedData.length) {
-          const diff = +confirmedCases - formattedData.length;
-          for (let x = 0; x < diff; x++) {
-            formattedData.push(model(formattedData.length + 1));
-          }
-        }
-
-        return;
-      }
-      
-      const obj = {
-        "case_no": +item,
-        "date": toIS08601(`${rawData[1][idx]}, 2020`),
-        "age": +rawData[2][idx],
-        "gender": rawData[3][idx],
-        "nationality": rawData[4][idx],
-        "hospital_admitted_to": rawData[5][idx],
-        "had_recent_travel_history_abroad": rawData[6][idx],
-        "status": rawData[7][idx],
-        "notes": rawData[8][idx]
-      };
-      
-      formattedData.push(obj);
+    const rows = await firstSheet.getRows({
+      offset: 1
     });
 
-    // We do this because infobox confirmed cases
-    // get updated quickly but the table hasn't
-    if (+confirmedCases > formattedData.length) {
-      const diff = +confirmedCases - formattedData.length;
-      for (let x = 0; x < diff; x++) {
-        formattedData.push(model(formattedData.length + 1));
-      }
-    }
+    const formattedData = [];
+
+    const addTBA = (val) => val === '?' || typeof val === 'undefined' ? "TBA" : val;
+
+    rows.forEach((row) => {
+      formattedData.push({
+        "case_no": +row['Case #'],
+        "date": row['Tested Positive'],
+        "age": +row.Age,
+        "gender": addTBA(row['Sex']),
+        "nationality": addTBA(row['Nationality']),
+        "hospital_admitted_to": addTBA(row['Medical Facility Admitted/Consulted']),
+        "had_recent_travel_history_abroad": addTBA(row['Travel History']),
+        "resident_of": addTBA(row['Resident of']),
+        "status": addTBA(row['Status']),
+        "other_information": addTBA(row['Other Information']),
+        "source": addTBA(row['Source (Press Release of DOH)'])
+      });
+    });
     
     return formattedData;
   }
