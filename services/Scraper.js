@@ -22,8 +22,79 @@ class Scraper {
       throw new Error("Can't fetch url.");
     }
   }
-  
+
   async getCases() {
+    const $ = await this.getHTML();
+    cheerioTableparser($);
+    const rawData = $('.wikitable').first().parsetable(true, true, true);
+
+    const model = (caseNo) => ({
+      "case_no": caseNo,
+      "date": "TBA",
+      "age": "TBA",
+      "gender": "TBA",
+      "nationality": "TBA",
+      "hospital_admitted_to": "TBA",
+      "had_recent_travel_history_abroad": "TBA",
+      "status": "TBA",
+      "other_information": "TBA"
+    });
+
+    const formattedData = [];
+
+    // Infobox confirmed cases
+    const confirmedCases = $('.infobox tbody tr th:contains("Confirmed cases")').next().text(); 
+
+    // Backup source when wiki is down
+    if (!confirmedCases) {
+      const redditData = await this.getRedditCases();
+      return redditData;
+    }
+
+    rawData[0].forEach((item, idx) => {
+      if (idx === 0) return;
+
+      // Check if last row has hyphen meaning it's TBA
+      // Ex. 201-212
+      if (item.includes('–')) {
+        if (+confirmedCases > formattedData.length) {
+          const diff = +confirmedCases - formattedData.length;
+          for (let x = 0; x < diff; x++) {
+            formattedData.push(model(formattedData.length + 1));
+          }
+        }
+
+        return;
+      }
+
+      const obj = {
+        "case_no": +item,
+        "date": toIS08601(`${rawData[1][idx]}, 2020`),
+        "age": +rawData[2][idx],
+        "gender": rawData[3][idx],
+        "nationality": rawData[4][idx],
+        "hospital_admitted_to": rawData[5][idx],
+        "had_recent_travel_history_abroad": rawData[6][idx],
+        "status": rawData[7][idx],
+        "other_information": rawData[8][idx]
+      };
+
+      formattedData.push(obj);
+    });
+
+    // We do this because infobox confirmed cases
+    // get updated quickly but the table hasn't
+    if (+confirmedCases > formattedData.length) {
+      const diff = +confirmedCases - formattedData.length;
+      for (let x = 0; x < diff; x++) {
+        formattedData.push(model(formattedData.length + 1));
+      }
+    }
+
+    return formattedData;
+  }
+  
+  async getRedditCases() {
     await doc.loadInfo();
     
     // Main database from reddit
@@ -46,10 +117,8 @@ class Scraper {
         "nationality": addTBA(row['Nationality']),
         "hospital_admitted_to": addTBA(row['Medical Facility Admitted/Consulted']),
         "had_recent_travel_history_abroad": addTBA(row['Travel History']),
-        "resident_of": addTBA(row['Resident of']),
         "status": addTBA(row['Status']) !== 'TBA' ? row['Status'].split(' ')[0] : 'TBA',
         "other_information": addTBA(row['Other Information']),
-        "source": addTBA(row['Source (Press Release of DOH)'])
       });
     });
     

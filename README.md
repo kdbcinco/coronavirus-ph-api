@@ -30,7 +30,6 @@ GET /cases
     "had_recent_travel_history_abroad": "Yes",
     "status": "Recovered (February 8)",
     "other_information": "First case of COVID-19 in PH",
-    "source": "https://www.doh.gov.ph/doh-press-release/doh-confirms-first-2019-nCoV-case-in-the-country"
   },
   {...}
 ]

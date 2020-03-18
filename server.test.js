@@ -17,7 +17,7 @@ describe('GET /cases', () => {
       hospital_admitted_to: "The Medical City",
       had_recent_travel_history_abroad: "No",
       status: "Admitted",
-      notes: "Relative of Case No. 5 and wife of Case No. 28; asymptomatic."
+      other_information: "Relative of Case No. 5 and wife of Case No. 28; asymptomatic."
     }))
     done();
   });
