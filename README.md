@@ -24,12 +24,13 @@ GET /cases
     "case_no": 1,
     "date": "2020-01-30",
     "age": 38,
-    "gender": "Female",
+    "gender": "F",
     "nationality": "Chinese",
-    "hospital_admitted_to": "San Lazaro Hospital, Manila",
+    "hospital_admitted_to": "San Lazaro Hospital",
     "had_recent_travel_history_abroad": "Yes",
-    "status": "Recovered",
-    "notes": "Traveled from Wuhan, China and Hong Kong. Wife of Case No. 2; discharged on February 10."
+    "status": "Recovered (February 8)",
+    "other_information": "First case of COVID-19 in PH",
+    "source": "https://www.doh.gov.ph/doh-press-release/doh-confirms-first-2019-nCoV-case-in-the-country"
   },
   {...}
 ]
@@ -139,8 +140,11 @@ GET /mm-checkpoints/:id
 
 ## Data
 
-The cases data comes from the [2020 coronavirus pandemic in the Philippines page in wikipedia](https://en.wikipedia.org/wiki/2020_coronavirus_pandemic_in_the_Philippines) which also gets mostly of their data from the [DOH COVID-19](https://www.doh.gov.ph/2019-nCoV) page while the checkpoints data comes from [safetravel.ph](https://safetravel.ph/). It is
-programmatically retrieved, re-formatted and stored in the cache for one hour.
+All data are programmatically retrieved, re-formatted and stored in the cache for one hour.
+
+- [Cases from r/Coronavirus_PH spreadsheet](https://www.reddit.com/r/Coronavirus_PH/comments/fehzke/ph_covid19_case_database_is_now_live/)
+- [Other endpoints from Wikipedia](https://en.wikipedia.org/wiki/2020_coronavirus_pandemic_in_the_Philippines)
+- [Metro Manila communit quarantine checkpoints](https://safetravel.ph)
 
 ## Installation
 
