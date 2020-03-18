@@ -48,7 +48,7 @@ class Scraper {
         "hospital_admitted_to": addTBA(row['Medical Facility Admitted/Consulted']),
         "had_recent_travel_history_abroad": addTBA(row['Travel History']),
         "resident_of": addTBA(row['Resident of']),
-        "status": addTBA(row['Status']),
+        "status": addTBA(row['Status']) !== 'TBA' ? row['Status'].split(' ')[0] : 'TBA',
         "other_information": addTBA(row['Other Information']),
         "source": addTBA(row['Source (Press Release of DOH)'])
       });
