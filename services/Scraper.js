@@ -42,11 +42,14 @@ class Scraper {
 
     const formattedData = [];
 
+    // If this element is missing, it means the table is missing in wiki
+    const casesCaption = $('span.nowrap:contains("Summary of COVID-19 cases in the Philippines")');
+
     // Infobox confirmed cases
     const confirmedCases = $('.infobox tbody tr th:contains("Confirmed cases")').next().text(); 
 
     // Backup source when wiki is down
-    if (!confirmedCases) {
+    if (!casesCaption.text()) {
       const redditData = await this.getRedditCases();
       return redditData;
     }
