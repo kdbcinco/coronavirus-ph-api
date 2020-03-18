@@ -143,8 +143,8 @@ GET /mm-checkpoints/:id
 All data are programmatically retrieved, re-formatted and stored in the cache for one hour.
 
 - [Cases from r/Coronavirus_PH spreadsheet](https://www.reddit.com/r/Coronavirus_PH/comments/fehzke/ph_covid19_case_database_is_now_live/)
-- [Other endpoints from Wikipedia](https://en.wikipedia.org/wiki/2020_coronavirus_pandemic_in_the_Philippines)
-- [Metro Manila communit quarantine checkpoints](https://safetravel.ph)
+- [Wikipedia](https://en.wikipedia.org/wiki/2020_coronavirus_pandemic_in_the_Philippines)
+- [Metro Manila community quarantine checkpoints](https://safetravel.ph)
 
 ## Installation
 
