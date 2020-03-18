@@ -19,29 +19,33 @@ class Scraper {
     const $ = await this.getHTML();
     cheerioTableparser($);
     const rawData = $('.wikitable').first().parsetable(true, true, true);
+
+    const model = (caseNo) => ({
+      "case_no": caseNo,
+      "date": "TBA",
+      "age": "TBA",
+      "gender": "TBA",
+      "nationality": "TBA",
+      "hospital_admitted_to": "TBA",
+      "had_recent_travel_history_abroad": "TBA",
+      "status": "TBA",
+      "notes": "TBA"
+    })
     
     const formattedData = [];
+
+    // Infobox confirmed cases
+    const confirmedCases = $('.infobox tbody tr th:contains("Confirmed cases")').next().text(); 
     
     rawData[0].forEach((item, idx) => {
       if (idx === 0) return;
 
       // Check if last row has hyphen meaning it's TBA
       if (item.includes('–')) {
-        const confirmedCases = $('.infobox tbody tr th:contains("Confirmed cases")').next().text();
         if (+confirmedCases > formattedData.length) {
           const diff = +confirmedCases - formattedData.length;
           for (let x = 0; x < diff; x++) {
-            formattedData.push({
-              "case_no": formattedData.length + 1,
-              "date": "TBA",
-              "age": "TBA",
-              "gender": "TBA",
-              "nationality": "TBA",
-              "hospital_admitted_to": "TBA",
-              "had_recent_travel_history_abroad": "TBA",
-              "status": "TBA",
-              "notes": "TBA"
-            });
+            formattedData.push(model(formattedData.length + 1));
           }
         }
 
@@ -62,6 +66,15 @@ class Scraper {
       
       formattedData.push(obj);
     });
+
+    // We do this because infobox confirmed cases
+    // get updated quickly but the table hasn't
+    if (+confirmedCases > formattedData.length) {
+      const diff = +confirmedCases - formattedData.length;
+      for (let x = 0; x < diff; x++) {
+        formattedData.push(model(formattedData.length + 1));
+      }
+    }
     
     return formattedData;
   }
