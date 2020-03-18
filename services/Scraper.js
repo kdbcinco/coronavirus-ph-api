@@ -2,12 +2,14 @@ const cheerio = require('cheerio');
 const cheerioTableparser = require('cheerio-tableparser');
 const axios = require('axios');
 const { GoogleSpreadsheet } = require('google-spreadsheet');
+require('dotenv').config();
 
 const URL = 'https://en.wikipedia.org/wiki/2020_coronavirus_pandemic_in_the_Philippines';
 
 const sheetId = '1wdxIwD0b58znX4UrH6JJh_0IhnZP0YWn23Uqs7lHB6Q';
 const doc = new GoogleSpreadsheet(sheetId);
 
+// Get from GOOGLE
 doc.useApiKey(process.env.DOC_API_KEY);
 
 class Scraper {
