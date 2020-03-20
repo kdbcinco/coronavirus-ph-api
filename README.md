@@ -176,6 +176,7 @@ A list of public websites that are using this API
 - https://www.facebook.com/dubrechi/posts/3417813594901888
 - https://techron.info/
 - https://alexisrequerman.github.io/covid19ph
+- http://www.armilwebdev.com/coronavirus
 
 ## Other apps
 
