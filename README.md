@@ -137,6 +137,27 @@ GET /mm-checkpoints/:id
 }
 ```
 
+Getting Local government units under partial lockdown:
+
+```http
+GET /lockdowns
+```
+
+```json
+[
+  {
+    "lgu": "Ilocos Norte",
+    "region": "I",
+    "start_date": "2020-03-14",
+    "estimated_population": 593081,
+    "cases": 0,
+    "deaths": 0,
+    "recovered": 0
+  },
+  {...}
+]
+```
+
 ## Data
 
 All data are programmatically retrieved, re-formatted and stored in the cache for one hour.
