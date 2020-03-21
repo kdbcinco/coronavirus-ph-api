@@ -22,7 +22,7 @@
       "methods": ["GET"]
     },
     {
-      "src": "/suspected-cases",
+      "src": "/test-results",
       "dest": "/index.js",
       "methods": ["GET"]
     },

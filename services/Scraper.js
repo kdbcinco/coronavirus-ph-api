@@ -176,7 +176,7 @@ class Scraper {
     return formattedData;
   }
 
-  async getSuspectedCases() {
+  async getTestResults() {
     const $ = await this.getHTML();
     cheerioTableparser($);
     const rawData = $('.wikitable').eq(3).parsetable(true, true, true);

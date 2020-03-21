@@ -65,9 +65,9 @@ describe('GET /patients-under-investigation', () => {
 
 });
 
-describe('GET /suspected-cases', () => {
+describe('GET /test-results', () => {
 
-  it('response with json containing suspected cases', async (done) => {
+  it('response with json containing case summary by test results', async (done) => {
     const response = await request.get('/suspected-cases');
     expect(response.status).toBe(200);
     expect(response.body).toHaveProperty('confirmed_cases');

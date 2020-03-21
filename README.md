@@ -55,10 +55,10 @@ GET /cases-outside-ph
 ]
 ```
 
-Getting suspected cases:
+Getting summary by test results
 
 ```http
-GET /suspected-cases
+GET /test-results
 ```
 
 ```json

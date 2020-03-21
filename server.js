@@ -20,18 +20,21 @@ app.get('/', (_, res) => {
   res.sendFile(path.join(__dirname + '/index.html'));
 });
 
+// Summary of COVID-19 cases in the Philippines
 app.get('/cases', async (req, res) => {
   const data = await scrape.getCases();
   return res.json(data);
 });
 
+// Confirmed cases of Filipino nationals outside the Philippines
 app.get('/cases-outside-ph', async (_, res) => {
   const data = await scrape.getCasesOutsidePh();
   return res.json(data);
 });
 
-app.get('/suspected-cases', async (_, res) => {
-  const data = await scrape.getSuspectedCases();
+// Case summary by test results
+app.get('/test-results', async (_, res) => {
+  const data = await scrape.getTestResults();
   return res.json(data);
 });
 
@@ -40,6 +43,7 @@ app.get('/patients-under-investigation', async (_, res) => {
   return res.json(data);
 });
 
+// Metro manila community quarantine checkpoints
 app.get('/mm-checkpoints', async (_, res) => {
   const data = checkpoint.getAll();
   return res.json(data);
