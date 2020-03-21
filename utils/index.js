@@ -15,6 +15,9 @@ const toIS08601 = (date) => {
   return `${year}-${month}-${dt}`;
 }
 
+const stringToNumber = (stringNum) => +stringNum.split(',').join('')
+
 module.exports = {
-  toIS08601
+  toIS08601,
+  stringToNumber
 }

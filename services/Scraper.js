@@ -2,7 +2,7 @@ const cheerio = require('cheerio');
 const cheerioTableparser = require('cheerio-tableparser');
 const axios = require('axios');
 const { GoogleSpreadsheet } = require('google-spreadsheet');
-const { toIS08601 } = require('../utils');
+const { toIS08601, stringToNumber } = require('../utils');
 require('dotenv').config();
 
 const URL = 'https://en.wikipedia.org/wiki/2020_coronavirus_pandemic_in_the_Philippines';
@@ -215,6 +215,31 @@ class Scraper {
       obj.total = +rawData[4][idx] + +rawData[5][idx] + +rawData[6][idx]
 
       formattedData.push(obj);
+    });
+
+    return formattedData;
+  }
+
+  async getLockdowns() {
+    const $ = await this.getHTML();
+    cheerioTableparser($);
+    const rawData = $('.wikitable').eq(5).parsetable(true, true, true);
+
+    const formattedData = [];
+
+    rawData[0].forEach((item, idx) => {
+      const skipIdx = [0,1,2,rawData[0].length - 1, rawData[0].length - 2, rawData[0].length - 3];
+      if (skipIdx.includes(idx)) return;
+
+      formattedData.push({
+        lgu: item.split('[')[0].trim(),
+        region: rawData[1][idx],
+        start_date: toIS08601(rawData[2][idx]),
+        estimated_population: stringToNumber(rawData[3][idx]),
+        cases: +rawData[4][idx],
+        deaths: +rawData[5][idx],
+        recovered: +rawData[6][idx]
+      });
     });
 
     return formattedData;

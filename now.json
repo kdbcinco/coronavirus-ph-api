@@ -40,6 +40,11 @@
       "src": "/mm-checkpoints/(?<id>[^/]*)",
       "dest": "/index.js",
       "methods": ["GET"]
+    },
+    {
+      "src": "/lockdowns",
+      "dest": "/index.js",
+      "methods": ["GET"]
     }
   ]
 }

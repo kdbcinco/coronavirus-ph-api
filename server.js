@@ -58,4 +58,10 @@ app.get('/mm-checkpoints/:id', async (req, res) => {
   }
 });
 
+// Local government units under partial lockdown 
+app.get('/lockdowns', async (_, res) => {
+  const data = await scrape.getLockdowns();
+  return res.json(data);
+});
+
 module.exports = app;
