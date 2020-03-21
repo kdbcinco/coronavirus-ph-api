@@ -4,118 +4,131 @@ const supertest = require('supertest');
 const request = supertest(app);
 
 describe('GET /cases', () => {
-  
+
   it('response with json containing a list of all cases', async (done) => {
     const response = await request.get('/cases');
     expect(response.status).toBe(200);
-    expect(JSON.stringify(response.body)).toMatch(JSON.stringify({
-      case_no: 30,
-      date: "2020-03-10",
-      age: 96,
-      gender: "Female",
-      nationality: "Filipino",
-      hospital_admitted_to: "The Medical City",
-      had_recent_travel_history_abroad: "No",
-      status: "Admitted",
-      other_information: "Relative of Case No. 5 and wife of Case No. 28; asymptomatic."
-    }))
+    expect(response.body).toBeInstanceOf(Array)
+    expect(response.body[0]).toMatchSnapshot({
+      case_no: expect.any(Number),
+      date: expect.any(String),
+      age: expect.any(Number),
+      gender: expect.any(String),
+      nationality: expect.any(String),
+      hospital_admitted_to: expect.any(String),
+      had_recent_travel_history_abroad: expect.any(String),
+      status: expect.any(String),
+      other_information: expect.any(String),
+    });
     done();
   });
-  
+
 });
 
 describe('GET /cases-outside-ph', () => {
-  
+
   it('response with json containing a list of all cases outside ph', async (done) => {
     const response = await request.get('/cases-outside-ph');
     expect(response.status).toBe(200);
-    expect(JSON.stringify(response.body)).toMatch(JSON.stringify({
-      country_territory_place: "Diamond Princess",
-      confirmed: 80,
-      recovered: 76,
-      died: 0
-    }))
+    expect(response.body).toBeInstanceOf(Array)
+    expect(response.body[0]).toMatchSnapshot({
+      country_territory_place: expect.any(String),
+      confirmed: expect.any(Number),
+      recovered: expect.any(Number),
+      died: expect.any(Number),
+    });
     done();
   });
-  
+
 });
 
 describe('GET /patients-under-investigation', () => {
-  
+
   it('response with json containing a list of all patients under investigation', async (done) => {
     const response = await request.get('/patients-under-investigation');
     expect(response.status).toBe(200);
-    expect(JSON.stringify(response.body)).toMatch(JSON.stringify({
-      region: "Metro Manila (NCR)",
+    expect(response.body).toBeInstanceOf(Array)
+    expect(response.body[0]).toMatchSnapshot({
+      region: expect.any(String),
+      local_government_unit: expect.any(String),
       current_pui_status: {
-        suspected_cases: {
-          admitted: 80,
-          deaths: 1
-        },
         confirmed_cases: {
-          admitted: 117,
-          recoveries: 1,
-          deaths: 9
+          admitted: expect.any(Number),
+          recoveries: expect.any(Number),
+          deaths: expect.any(Number)
         }
       },
-      total: 208
-    }))
+      total: expect.any(Number)
+    });
     done();
   });
-  
+
 });
 
 describe('GET /suspected-cases', () => {
-  
+
   it('response with json containing suspected cases', async (done) => {
     const response = await request.get('/suspected-cases');
     expect(response.status).toBe(200);
-    expect(JSON.stringify(response.body)).toMatch(JSON.stringify({
-      confirmed_cases: 142,
-      cases_tested_negative: 638,
-      cases_pending_test_results: 72
-    }))
+    expect(response.body).toHaveProperty('confirmed_cases');
+    expect(response.body).toHaveProperty('cases_tested_negative');
+    expect(response.body).toHaveProperty('cases_pending_test_results');
+    expect(response.body).toMatchSnapshot({
+      confirmed_cases: expect.any(Number),
+      cases_tested_negative: expect.any(Number),
+      cases_pending_test_results: expect.any(Number)
+    });
     done();
   });
-  
+
 });
 
 describe('GET /mm-checkpoints', () => {
-  
+
   it('response with json containing a list of Metro Manila Community Quarantine Checkpoints', async (done) => {
     const response = await request.get('/mm-checkpoints');
     expect(response.status).toBe(200);
-    expect(JSON.stringify(response.body)).toMatch(JSON.stringify({
-      id: 13,
-      district: "NORTHERN POLICE DISTRICT",
-      city: "VALENZUELA CITY",
-      location: "NLEX (ENTRANCE)",
-      type: "EntryExit",
-      lat: 14.768614,
-      lng: 120.967557,
-      description: "Not verified"
-    }))
+    expect(response.body).toBeInstanceOf(Array)
+    expect(response.body[0]).toMatchSnapshot({
+      id: expect.any(Number),
+      district: expect.any(String),
+      city: expect.any(String),
+      location: expect.any(String),
+      type: expect.any(String),
+      lat: expect.any(Number),
+      lng: expect.any(Number),
+      description: expect.any(String)
+    });
     done();
   });
-  
+
 });
 
 describe('GET /mm-checkpoints/:id', () => {
-  
+
   it('response with json containing a single Metro Manila Community Quarantine Checkpoint', async (done) => {
     const response = await request.get('/mm-checkpoints/13');
     expect(response.status).toBe(200);
-    expect(JSON.stringify(response.body)).toMatch(JSON.stringify({
-      id: 13,
-      district: "NORTHERN POLICE DISTRICT",
-      city: "VALENZUELA CITY",
-      location: "NLEX (ENTRANCE)",
-      type: "EntryExit",
-      lat: 14.768614,
-      lng: 120.967557,
-      description: "Not verified"
-    }))
+    expect(response.body).toBeInstanceOf(Object)
+    expect(response.body).toHaveProperty('id');
+    expect(response.body).toHaveProperty('district');
+    expect(response.body).toHaveProperty('city');
+    expect(response.body).toHaveProperty('location');
+    expect(response.body).toHaveProperty('type');
+    expect(response.body).toHaveProperty('lat');
+    expect(response.body).toHaveProperty('lng');
+    expect(response.body).toHaveProperty('description');
+    expect(response.body).toMatchSnapshot({
+      id: expect.any(Number),
+      district: expect.any(String),
+      city: expect.any(String),
+      location: expect.any(String),
+      type: expect.any(String),
+      lat: expect.any(Number),
+      lng: expect.any(Number),
+      description: expect.any(String)
+    });
     done();
   });
-  
+
 });
