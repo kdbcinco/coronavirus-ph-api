@@ -55,7 +55,7 @@ GET /cases-outside-ph
 ]
 ```
 
-Getting summary by test results
+Getting case summary by test results
 
 ```http
 GET /test-results
