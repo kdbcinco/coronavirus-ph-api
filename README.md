@@ -71,6 +71,8 @@ GET /suspected-cases
 
 Getting patients under investigation:
 
+SOURCE UNAVAILABLE. NO DATA
+
 ```http
 GET /patients-under-investigation
 ```

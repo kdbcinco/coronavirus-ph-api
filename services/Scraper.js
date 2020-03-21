@@ -73,7 +73,7 @@ class Scraper {
       const obj = {
         "case_no": +item,
         "date": toIS08601(`${rawData[1][idx]}, 2020`),
-        "age": +rawData[2][idx],
+        "age": typeof rawData[2][idx] === 'string' ? rawData[2][idx] : +rawData[2][idx],
         "gender": rawData[3][idx].charAt(0),
         "nationality": rawData[4][idx],
         "hospital_admitted_to": rawData[5][idx],
