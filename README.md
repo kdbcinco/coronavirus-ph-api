@@ -69,33 +69,6 @@ GET /test-results
 }
 ```
 
-[DO NOT USE FOR NOW] Getting patients under investigation:
-
-```http
-GET /patients-under-investigation
-```
-
-```json
-[
-  {
-    "region": "Metro Manila (NCR)",
-    "current_pui_status": {
-       "suspected_cases": {
-         "admitted": 80,
-         "deaths": 1
-       },
-       "confirmed_cases": {
-         "admitted": 117,
-         "recoveries": 1,
-         "deaths": 9
-       }
-    },
-    "total": 208
-  },
-  {...}
-]
-```
-
 Getting Metro Manila Community Quarantine Checkpoints:
 
 ```http
