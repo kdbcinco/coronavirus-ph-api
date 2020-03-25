@@ -195,9 +195,10 @@ A list of public websites that are using this API
 - https://covid19ph-update.netlify.com
 - https://covid19.nextvation.com
 - https://www.facebook.com/dubrechi/posts/3417813594901888
-- https://techron.info/
+- https://techron.info
 - https://alexisrequerman.github.io/covid19ph
 - http://www.armilwebdev.com/coronavirus
+- https://ncov.gundamserver.com
 
 ## Other apps
 
