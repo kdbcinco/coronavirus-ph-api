@@ -26,10 +26,6 @@ class Scraper {
 
   async getCases() {
     const $ = await this.getHTML()
-    cheerioTableparser($)
-    const rawData = $('.wikitable')
-      .first()
-      .parsetable(true, true, true)
 
     const model = caseNo => ({
       case_no: caseNo,
@@ -56,41 +52,71 @@ class Scraper {
       return redditData
     }
 
+    const travelHistory = el => {
+      let res
+
+      if (el.hasClass('tba')) {
+        res = 'TBA'
+      } else if (el.hasClass('yes')) {
+        res = 'Yes'
+      } else if (el.hasClass('no')) {
+        res = 'No'
+      }
+
+      return res.trim()
+    }
+
+    const status = el => {
+      let res
+
+      if (el.hasClass('tba')) {
+        res = 'TBA'
+      } else if (el.hasClass('status-r')) {
+        res = 'Recovered'
+      } else if (el.hasClass('status-d')) {
+        res = 'Died'
+      } else if (el.hasClass('status-a')) {
+        res = 'Admitted'
+      }
+
+      return res.trim()
+    }
+
+    const content = (child, idx) => {
+      if (child.eq(idx).hasClass('tba')) {
+        return 'TBA'
+      }
+
+      return child
+        .eq(idx)
+        .text()
+        .trim()
+    }
+
+    $('.wikitable')
+      .first()
+      .find('tbody tr')
+      .each((idx, el) => {
+        if (idx === 0) return
+        const child = $(el).children()
+
+        formattedData.push({
+          case_no: +content(child, 0),
+          date: toIS08601(content(child, 1)),
+          age: +content(child, 2),
+          gender: content(child, 3).charAt(0),
+          nationality: content(child, 4),
+          hospital_admitted_to: content(child, 5),
+          had_recent_travel_history_abroad: travelHistory(child.eq(6)),
+          status: status(child.eq(7)),
+          other_information: content(child, 8)
+        })
+      })
+
     // Infobox confirmed cases
     const confirmedCases = $('.infobox tbody tr th:contains("Confirmed cases")')
       .next()
       .text()
-
-    rawData[0].forEach((item, idx) => {
-      if (idx === 0) return
-
-      // Check if last row has hyphen meaning it's TBA
-      // Ex. 201-212
-      if (item.includes('–')) {
-        if (+confirmedCases > formattedData.length) {
-          const diff = +confirmedCases - formattedData.length
-          for (let x = 0; x < diff; x++) {
-            formattedData.push(model(formattedData.length + 1))
-          }
-        }
-
-        return
-      }
-
-      const obj = {
-        case_no: +item,
-        date: toIS08601(`${rawData[1][idx]}, 2020`),
-        age: rawData[2][idx] === 'TBA' ? 'TBA' : +rawData[2][idx],
-        gender: rawData[3][idx] !== 'TBA' ? rawData[3][idx].charAt(0) : 'TBA',
-        nationality: rawData[4][idx],
-        hospital_admitted_to: rawData[5][idx],
-        had_recent_travel_history_abroad: rawData[6][idx],
-        status: rawData[7][idx],
-        other_information: rawData[8][idx]
-      }
-
-      formattedData.push(obj)
-    })
 
     // We do this because infobox confirmed cases
     // get updated quickly but the table hasn't
