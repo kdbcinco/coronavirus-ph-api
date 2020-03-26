@@ -102,7 +102,7 @@ class Scraper {
 
         formattedData.push({
           case_no: +content(child, 0),
-          date: toIS08601(content(child, 1)),
+          date: toIS08601(`${content(child, 1)}, 2020`),
           age: +content(child, 2),
           gender: content(child, 3).charAt(0),
           nationality: content(child, 4),
