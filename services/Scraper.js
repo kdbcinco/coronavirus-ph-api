@@ -209,9 +209,9 @@ class Scraper {
 
       const obj = {
         country_territory_place: item,
-        confirmed: +rawData[1][idx],
-        recovered: +rawData[2][idx],
-        died: +rawData[3][idx]
+        confirmed: +rawData[1][idx].split('[')[0],
+        recovered: +rawData[2][idx].split('[')[0],
+        died: +rawData[3][idx].split('[')[0]
       }
 
       formattedData.push(obj)
