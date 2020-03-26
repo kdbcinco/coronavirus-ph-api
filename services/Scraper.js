@@ -1,6 +1,7 @@
 const cheerio = require('cheerio')
 const cheerioTableparser = require('cheerio-tableparser')
 const axios = require('axios')
+const https = require('https')
 const { GoogleSpreadsheet } = require('google-spreadsheet')
 const { toIS08601, stringToNumber } = require('../utils')
 require('dotenv').config()
@@ -20,6 +21,7 @@ class Scraper {
       const res = await axios(URL)
       return cheerio.load(res.data)
     } catch (e) {
+      console.log(e)
       throw new Error("Can't fetch url.")
     }
   }
@@ -225,6 +227,7 @@ class Scraper {
     return formattedData
   }
 
+  // Removed from wiki
   async getTestResults() {
     const $ = await this.getHTML()
     cheerioTableparser($)
@@ -237,6 +240,40 @@ class Scraper {
       cases_tested_negative: +rawData[1][1],
       cases_pending_test_results: +rawData[1][2]
     }
+  }
+
+  async getLaboratoryStatusOfPatients() {
+    const agent = new https.Agent({
+      rejectUnauthorized: false
+    })
+    const res = await axios('https://www.doh.gov.ph/2019-nCov', {
+      httpsAgent: agent
+    })
+    const $ = cheerio.load(res.data)
+
+    const formattedData = {}
+
+    $('table')
+      .eq(0)
+      .find('tbody tr')
+      .each((idx, el) => {
+        const td = $(el).children()
+
+        formattedData[
+          td
+            .eq(0)
+            .text()
+            .trim()
+            .split(' ')
+            .join('_')
+            .toLowerCase()
+        ] = +td
+          .eq(1)
+          .text()
+          .trim()
+      })
+
+    return formattedData
   }
 
   async getPatientsUnderInvestigation() {

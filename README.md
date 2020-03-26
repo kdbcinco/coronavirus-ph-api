@@ -55,7 +55,7 @@ GET /cases-outside-ph
 ]
 ```
 
-Getting case summary by test results
+Getting Laboratory Status of Patients in the Philippines
 
 ```http
 GET /test-results
@@ -63,9 +63,9 @@ GET /test-results
 
 ```json
 {
-  "confirmed_cases": 140,
-  "cases_tested_negative": 638,
-  "cases_pending_test_results": 72
+  "confirmed_cases": 636,
+  "cases_tested_negative": 728,
+  "cases_pending_test_results": 595
 }
 ```
 
