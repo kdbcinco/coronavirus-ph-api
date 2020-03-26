@@ -100,7 +100,14 @@ class Scraper {
       .find('tbody tr')
       .each((idx, el) => {
         if (idx === 0) return
+
         const child = $(el).children()
+
+        // Check if doubled data - from wiki
+        const exists = formattedData.findIndex(
+          i => i.case_no == content(child, 0)
+        )
+        if (exists !== -1) return
 
         formattedData.push({
           case_no: +content(child, 0),
