@@ -204,7 +204,12 @@ class Scraper {
     const formattedData = []
 
     rawData[0].forEach((item, idx) => {
-      const skip = [0, rawData[0].length - 1, rawData[0].length - 2]
+      const skip = [
+        0,
+        rawData[0].length - 1,
+        rawData[0].length - 2,
+        rawData[0].length - 3
+      ]
       if (skip.includes(idx)) return
 
       const obj = {
