@@ -105,8 +105,9 @@ class Scraper {
         formattedData.push({
           case_no: +content(child, 0),
           date: toIS08601(`${content(child, 1)}, 2020`),
-          age: +content(child, 2),
-          gender: content(child, 3).charAt(0),
+          age: content(child, 2) === 'TBA' ? 'TBA' : +content(child, 2),
+          gender:
+            content(child, 3) === 'TBA' ? 'TBA' : content(child, 3).charAt(0),
           nationality: content(child, 4),
           hospital_admitted_to: content(child, 5),
           had_recent_travel_history_abroad: travelHistory(child.eq(6)),
