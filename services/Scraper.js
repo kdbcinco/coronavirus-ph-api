@@ -208,7 +208,7 @@ class Scraper {
     const $ = await this.getHTML()
     cheerioTableparser($)
     const rawData = $('.wikitable')
-      .eq(2)
+      .eq(1)
       .parsetable(true, true, true)
 
     const formattedData = []
