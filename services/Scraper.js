@@ -63,6 +63,8 @@ class Scraper {
         res = 'Yes'
       } else if (el.hasClass('no')) {
         res = 'No'
+      } else {
+        res = 'TBA'
       }
 
       return res.trim()
@@ -108,7 +110,7 @@ class Scraper {
           i => i.case_no == content(child, 0)
         )
         if (exists !== -1) return
-
+          console.log(formattedData.length)
         formattedData.push({
           case_no: +content(child, 0),
           date: toIS08601(`${content(child, 1)}, 2020`),
