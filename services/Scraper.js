@@ -107,7 +107,7 @@ class Scraper {
           i => i.case_no == content(child, 0)
         )
         if (exists !== -1) return
-        
+
         formattedData.push({
           case_no: +content(child, 0),
           date: toIS08601(`${content(child, 1)}, 2020`),
@@ -350,9 +350,9 @@ class Scraper {
         region: rawData[1][idx],
         start_date: toIS08601(rawData[2][idx]),
         estimated_population: stringToNumber(rawData[3][idx]),
-        cases: +rawData[4][idx],
-        deaths: +rawData[5][idx],
-        recovered: +rawData[6][idx]
+        cases: +rawData[4][idx] || 0,
+        deaths: +rawData[5][idx] || 0,
+        recovered: +rawData[6][idx || 0]
       })
     })
 
