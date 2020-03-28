@@ -246,9 +246,9 @@ class Scraper {
       .parsetable(true, true, true)
 
     return {
-      confirmed_cases: +rawData[1][0],
-      cases_tested_negative: +rawData[1][1],
-      cases_pending_test_results: +rawData[1][2]
+      confirmed_cases: +rawData[1][0].split(',').join(''),
+      cases_tested_negative: +rawData[1][1].split(',').join(''),
+      cases_pending_test_results: +rawData[1][2].split(',').join('')
     }
   }
 
