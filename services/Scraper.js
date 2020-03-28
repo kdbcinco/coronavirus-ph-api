@@ -6,9 +6,6 @@ const { GoogleSpreadsheet } = require('google-spreadsheet')
 const { toIS08601, stringToNumber } = require('../utils')
 require('dotenv').config()
 
-const URL =
-  'https://en.wikipedia.org/wiki/2020_coronavirus_pandemic_in_the_Philippines'
-
 const sheetId = '1wdxIwD0b58znX4UrH6JJh_0IhnZP0YWn23Uqs7lHB6Q'
 const doc = new GoogleSpreadsheet(sheetId)
 
@@ -16,9 +13,9 @@ const doc = new GoogleSpreadsheet(sheetId)
 doc.useApiKey(process.env.DOC_API_KEY)
 
 class Scraper {
-  async getHTML() {
+  async getHTML(url = 'https://en.wikipedia.org/wiki/2020_coronavirus_pandemic_in_the_Philippines') {
     try {
-      const res = await axios(URL)
+      const res = await axios(url)
       return cheerio.load(res.data)
     } catch (e) {
       console.log(e)
@@ -110,7 +107,7 @@ class Scraper {
           i => i.case_no == content(child, 0)
         )
         if (exists !== -1) return
-          console.log(formattedData.length)
+        
         formattedData.push({
           case_no: +content(child, 0),
           date: toIS08601(`${content(child, 1)}, 2020`),
@@ -328,10 +325,11 @@ class Scraper {
   }
 
   async getLockdowns() {
-    const $ = await this.getHTML()
+    const url = 'https://en.wikipedia.org/wiki/Template:2019%E2%80%9320_coronavirus_pandemic_data/Philippines_coronavirus_quarantines'
+    const $ = await this.getHTML(url)
     cheerioTableparser($)
     const rawData = $('.wikitable')
-      .eq(4)
+      .first()
       .parsetable(true, true, true)
 
     const formattedData = []
