@@ -156,10 +156,6 @@ All data are programmatically retrieved, re-formatted and stored in the cache fo
 
 - `npm test`
 
-## Deploy on ZEIT Now
-
-The easiest way to deploy this app is to use the [ZEIT Now Platform](https://zeit.co/) from the creators of Next.js.
-
 ## In the Wild
 
 A list of public websites that are using this API

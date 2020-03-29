@@ -133,6 +133,7 @@ class Scraper {
     const confirmedCases = $('.infobox tbody tr th:contains("Confirmed cases")')
       .next()
       .text()
+      .replace(/\,/g, '')
 
     // We do this because infobox confirmed cases
     // get updated quickly but the table hasn't
