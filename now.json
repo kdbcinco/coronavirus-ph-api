@@ -8,7 +8,7 @@
       "src": "README.md",
       "use": "@now/static"
     },
-    { "src": "index.js", "use": "@now/node-server" }
+    { "src": "index.js", "use": "@now/node" }
   ],
   "routes": [
     {
