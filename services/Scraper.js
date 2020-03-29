@@ -277,7 +277,7 @@ class Scraper {
         ] = +td
           .eq(1)
           .text()
-          .trim()
+          .trim().replace(/\,/g,'')
       })
 
     return formattedData
