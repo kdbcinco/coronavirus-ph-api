@@ -99,6 +99,7 @@ class Scraper {
     $('.wikitable')
       .first()
       .find('tbody tr')
+      .slice(0, 1076)
       .each((idx, el) => {
         if (idx === 0) return
 
@@ -143,7 +144,7 @@ class Scraper {
       }
     }
 
-    return formattedData.slice(0, 803)
+    return formattedData
   }
 
   async getRedditCases() {
