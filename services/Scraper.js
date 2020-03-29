@@ -143,7 +143,7 @@ class Scraper {
       }
     }
 
-    return formattedData
+    return formattedData.slice(0, 1075)
   }
 
   async getRedditCases() {
@@ -237,6 +237,8 @@ class Scraper {
 
       formattedData.push(obj)
     })
+
+    // return formattedData
 
     return formattedData
   }
