@@ -144,7 +144,7 @@ class Scraper {
       }
     }
 
-    return formattedData
+    return formattedData.slice(0, 1)
   }
 
   async getRedditCases() {
