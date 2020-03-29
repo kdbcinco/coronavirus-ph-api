@@ -10,8 +10,6 @@
 
 ## Endpoints
 
-<h2>NEW URL: https://coronavirus-ph-api.herokuapp.com</h2>
-
 All requests must be made to the base url: `https://coronavirus-ph-api.herokuapp.com` (e.g: https://coronavirus-ph-api.herokuapp.com/cases). You can try them out in your browser to further inspect responses.
 
 Getting summary of COVID-19 cases in the Philippines:
