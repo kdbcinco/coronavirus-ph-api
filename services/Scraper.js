@@ -13,7 +13,9 @@ const doc = new GoogleSpreadsheet(sheetId)
 doc.useApiKey(process.env.DOC_API_KEY)
 
 class Scraper {
-  async getHTML(url = 'https://en.wikipedia.org/wiki/2020_coronavirus_pandemic_in_the_Philippines') {
+  async getHTML(
+    url = 'https://en.wikipedia.org/wiki/2020_coronavirus_pandemic_in_the_Philippines'
+  ) {
     try {
       const res = await axios(url)
       return cheerio.load(res.data)
@@ -111,9 +113,14 @@ class Scraper {
         formattedData.push({
           case_no: +content(child, 0),
           date: toIS08601(`${content(child, 1)}, 2020`),
-          age: content(child, 2) === 'TBA' ? 'TBA' : +content(child, 2),
+          age:
+            content(child, 2) === 'TBA' || content(child, 2) === ''
+              ? 'TBA'
+              : +content(child, 2),
           gender:
-            content(child, 3) === 'TBA' ? 'TBA' : content(child, 3).charAt(0),
+            content(child, 3) === 'TBA' || content(child, 3) === ''
+              ? 'TBA'
+              : content(child, 3).charAt(0),
           nationality: content(child, 4),
           hospital_admitted_to: content(child, 5),
           had_recent_travel_history_abroad: travelHistory(child.eq(6)),
@@ -277,7 +284,8 @@ class Scraper {
         ] = +td
           .eq(1)
           .text()
-          .trim().replace(/\,/g,'')
+          .trim()
+          .replace(/\,/g, '')
       })
 
     return formattedData
@@ -325,7 +333,8 @@ class Scraper {
   }
 
   async getLockdowns() {
-    const url = 'https://en.wikipedia.org/wiki/Template:2019%E2%80%9320_coronavirus_pandemic_data/Philippines_coronavirus_quarantines'
+    const url =
+      'https://en.wikipedia.org/wiki/Template:2019%E2%80%9320_coronavirus_pandemic_data/Philippines_coronavirus_quarantines'
     const $ = await this.getHTML(url)
     cheerioTableparser($)
     const rawData = $('.wikitable')
