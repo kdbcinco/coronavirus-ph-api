@@ -143,7 +143,7 @@ class Scraper {
       }
     }
 
-    return formattedData.slice(0, 1075)
+    return formattedData.slice(0, 803)
   }
 
   async getRedditCases() {
