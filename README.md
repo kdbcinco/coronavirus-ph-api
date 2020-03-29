@@ -8,6 +8,8 @@
 ![GitHub forks](https://img.shields.io/github/forks/sorxrob/coronavirus-ph-api)
 ![GitHub last commit](https://img.shields.io/github/last-commit/sorxrob/coronavirus-ph-api)
 
+<a href="https://www.buymeacoffee.com/7eDr4fv" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/lato-orange.png" alt="Buy Me A Coffee" style="height: 41px !important;width: 174px !important;" ></a>
+
 ## Endpoints
 
 All requests must be made to the base url: `https://coronavirus-ph-api.now.sh` (e.g: https://coronavirus-ph-api.now.sh/cases). You can try them out in your browser to further inspect responses.
