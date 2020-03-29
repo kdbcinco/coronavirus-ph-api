@@ -20,6 +20,10 @@ app.get('/', (_, res) => {
   res.sendFile(path.join(__dirname + '/index.html'))
 })
 
+app.get('/README.md', (_, res) => {
+  res.sendFile(path.join(__dirname + '/README.md'))
+})
+
 // Summary of COVID-19 cases in the Philippines
 app.get('/cases', async (req, res) => {
   const data = await scrape.getCases()

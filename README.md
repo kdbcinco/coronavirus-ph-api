@@ -10,7 +10,7 @@
 
 ## Endpoints
 
-All requests must be made to the base url: `https://coronavirus-ph-api.now.sh` (e.g: https://coronavirus-ph-api.now.sh/cases). You can try them out in your browser to further inspect responses.
+All requests must be made to the base url: `https://coronavirus-ph-api.herokuapp.com` (e.g: https://coronavirus-ph-api.herokuapp.com/cases). You can try them out in your browser to further inspect responses.
 
 Getting summary of COVID-19 cases in the Philippines:
 
