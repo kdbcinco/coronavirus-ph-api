@@ -99,7 +99,7 @@ class Scraper {
     $('.wikitable')
       .first()
       .find('tbody tr')
-      .slice(0, 1076)
+      .slice(0, 10)
       .each((idx, el) => {
         if (idx === 0) return
 
