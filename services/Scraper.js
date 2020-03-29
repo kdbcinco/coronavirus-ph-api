@@ -104,12 +104,6 @@ class Scraper {
 
         const child = $(el).children()
 
-        // Check if doubled data - from wiki
-        const exists = formattedData.findIndex(
-          i => i.case_no == content(child, 0)
-        )
-        if (exists !== -1) return
-
         formattedData.push({
           case_no: +content(child, 0),
           date: toIS08601(`${content(child, 1)}, 2020`),
@@ -144,7 +138,7 @@ class Scraper {
       }
     }
 
-    return formattedData.slice(0, 1)
+    return formattedData
   }
 
   async getRedditCases() {
