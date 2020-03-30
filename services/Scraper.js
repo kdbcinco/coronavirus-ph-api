@@ -58,9 +58,9 @@ class Scraper {
 
       if (el.hasClass('tba')) {
         res = 'TBA'
-      } else if (el.hasClass('yes')) {
+      } else if (el.hasClass('table-yes')) {
         res = 'Yes'
-      } else if (el.hasClass('no')) {
+      } else if (el.hasClass('table-no')) {
         res = 'No'
       } else {
         res = 'TBA'
@@ -76,13 +76,13 @@ class Scraper {
         res = 'TBA'
       } else if (el.hasClass('status-r')) {
         res = 'Recovered'
-      } else if (el.hasClass('status-d')) {
+      } else if (el.hasClass('table-success')) {
         res = 'Died'
-      } else if (el.hasClass('status-a')) {
+      } else if (el.hasClass('table-partial')) {
         res = 'Admitted'
       }
 
-      return res.trim()
+      return res
     }
 
     const content = (child, idx) => {
@@ -101,7 +101,6 @@ class Scraper {
       .find('tbody tr')
       .each((idx, el) => {
         if (idx === 0) return
-
         const child = $(el).children()
 
         formattedData.push({
