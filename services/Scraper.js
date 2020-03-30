@@ -157,6 +157,14 @@ class Scraper {
     const addTBA = val =>
       val === '?' || typeof val === 'undefined' ? 'TBA' : val
 
+    const status = stat => {
+      if (stat === 'Dead') {
+        return 'Died'
+      }
+
+      return stat
+    }
+
     rows.forEach(row => {
       formattedData.push({
         case_no: +row['Case #'],
@@ -172,7 +180,9 @@ class Scraper {
         ),
         had_recent_travel_history_abroad: addTBA(row['Travel History']),
         status:
-          addTBA(row['Status']) !== 'TBA' ? row['Status'].split(' ')[0] : 'TBA',
+          addTBA(row['Status']) !== 'TBA'
+            ? status(row['Status'].split(' ')[0])
+            : 'TBA',
         other_information: addTBA(row['Other Information'])
       })
     })
@@ -184,6 +194,7 @@ class Scraper {
     const confirmedCases = $('.infobox tbody tr th:contains("Confirmed cases")')
       .next()
       .text()
+      .replace(/\,/g, '')
     if (+confirmedCases > formattedData.length) {
       const diff = +confirmedCases - formattedData.length
       for (let x = 0; x < diff; x++) {
@@ -197,8 +208,7 @@ class Scraper {
           had_recent_travel_history_abroad: 'TBA',
           resident_of: 'TBA',
           status: 'TBA',
-          other_information: 'TBA',
-          source: 'TBA'
+          other_information: 'TBA'
         })
       }
     }
