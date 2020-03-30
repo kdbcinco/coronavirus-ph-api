@@ -74,9 +74,9 @@ class Scraper {
 
       if (el.hasClass('tba')) {
         res = 'TBA'
-      } else if (el.hasClass('status-r')) {
-        res = 'Recovered'
       } else if (el.hasClass('table-success')) {
+        res = 'Recovered'
+      } else if (el.hasClass('table-failure')) {
         res = 'Died'
       } else if (el.hasClass('table-partial')) {
         res = 'Admitted'
