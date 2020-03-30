@@ -137,7 +137,9 @@ class Scraper {
       }
     }
 
-    return formattedData
+    const uniq = [...new Set(formattedData.map(i => JSON.stringify(i)))]
+
+    return uniq.map(i => JSON.parse(i))
   }
 
   async getRedditCases() {
